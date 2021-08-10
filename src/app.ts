@@ -1,4 +1,4 @@
-const userName = 'Max';
+const userName = "Max";
 // userName = 'Maximilian';
 let age = 30;
 
@@ -18,7 +18,7 @@ age = 29;
 
 // console.log(result);
 
-const add = (a: number, b: number) => a + b;
+const add = (a: number, b: number = 1) => a + b;
 
 const printOutput: (a: number | string) => void = output => console.log(output);
 
@@ -28,4 +28,4 @@ if (button) {
   button.addEventListener('click', event => console.log(event));
 }
 
-printOutput(add(5, 2));
+printOutput(add(5));
