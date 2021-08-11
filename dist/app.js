@@ -3,13 +3,14 @@ class Department {
     constructor(id, name) {
         this.id = id;
         this.name = name;
-        // private id: string;
+        // private readonly id: string;
         // private name: string;
         this.employees = [];
         // this.id = id;
         // this.name = name;
     }
     describe() {
+        // this.id = "NEW ID";
         console.log(`Department (${this.id}): ${this.name}`);
     }
     addEmployee(employee) {
