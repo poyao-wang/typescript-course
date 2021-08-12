@@ -1,7 +1,7 @@
 class Department {
   // private readonly id: string;
   // private name: string;
-  private employees: string[] = [];
+  protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
     // this.id = id;
@@ -25,14 +25,21 @@ class Department {
 class ITDepartment extends Department {
   admins: string[];
   constructor(id: string, admins: string[]) {
-    super(id, 'IT');
+    super(id, "IT");
     this.admins = admins;
   }
 }
 
 class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[]) {
-    super(id, 'Accounting');
+    super(id, "Accounting");
+  }
+
+  addEmployee(name: string) {
+    if (name === "Max") {
+      return;
+    }
+    this.employees.push(name);
   }
 
   addReport(text: string) {
@@ -61,7 +68,11 @@ const accounting = new AccountingDepartment('d2', []);
 
 accounting.addReport('Something went wrong...');
 
+accounting.addEmployee("Max");
+accounting.addEmployee("Manu");
+
 accounting.printReports();
+accounting.printEmployeeInformation();
 
 // const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
 
