@@ -1,4 +1,5 @@
 class Department {
+  static fiscalYear = 2020;
   // private readonly id: string;
   // private name: string;
   protected employees: string[] = [];
@@ -6,6 +7,11 @@ class Department {
   constructor(private readonly id: string, public name: string) {
     // this.id = id;
     // this.name = name;
+    // console.log(Department.fiscalYear);
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -25,7 +31,7 @@ class Department {
 class ITDepartment extends Department {
   admins: string[];
   constructor(id: string, admins: string[]) {
-    super(id, "IT");
+    super(id, 'IT');
     this.admins = admins;
   }
 }
@@ -48,12 +54,12 @@ class AccountingDepartment extends Department {
   }
 
   constructor(id: string, private reports: string[]) {
-    super(id, "Accounting");
+    super(id, 'Accounting');
     this.lastReport = reports[0];
   }
 
   addEmployee(name: string) {
-    if (name === "Max") {
+    if (name === 'Max') {
       return;
     }
     this.employees.push(name);
@@ -68,6 +74,9 @@ class AccountingDepartment extends Department {
     console.log(this.reports);
   }
 }
+
+const employee1 = Department.createEmployee('Max');
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment('d1', ['Max']);
 
@@ -88,8 +97,8 @@ accounting.mostRecentReport = 'Year End Report';
 accounting.addReport('Something went wrong...');
 console.log(accounting.mostRecentReport);
 
-accounting.addEmployee("Max");
-accounting.addEmployee("Manu");
+accounting.addEmployee('Max');
+accounting.addEmployee('Manu');
 
 accounting.printReports();
 accounting.printEmployeeInformation();
