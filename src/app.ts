@@ -43,7 +43,29 @@ const fetchedUserData = {
   job: { title: 'CEO', description: 'My own company' },
 };
 
-console.log(fetchedUserData?.job?.title);
+// console.log(fetchedUserData?.job?.title);
+
+const nullishCheckIfNull = null ?? 'isNull';
+const nullishCheckIfUndefined = undefined ?? 'isUndefined';
+const nullishWillNotCheckEmptyString = '' ?? 'isEmptyString';
+const nullishWillNotCheckZero = 0 ?? 'isZero';
+
+console.log('---??---');
+console.log('nullishCheckIfNull:', nullishCheckIfNull);
+console.log('nullishCheckIfUndefined:', nullishCheckIfUndefined);
+console.log('nullishWillNotCheckEmptyString:', nullishWillNotCheckEmptyString);
+console.log('nullishWillNotCheckZero:', nullishWillNotCheckZero);
+
+const falsyCheckIfNull = null || 'isNull';
+const falsyCheckIfUndefined = undefined || 'isUndefined';
+const falsyCheckWillCheckEmptyString = '' || 'isEmptyString';
+const falsyCheckWillCheckZero = 0 || 'isZero';
+
+console.log('---||---');
+console.log('falsyCheckIfNull:', falsyCheckIfNull);
+console.log('falsyCheckIfUndefined:', falsyCheckIfUndefined);
+console.log('falsyCheckWillCheckEmptyString:', falsyCheckWillCheckEmptyString);
+console.log('falsyCheckWillCheckZero:', falsyCheckWillCheckZero);
 
 // type UnknownEmployee = Employee | Admin;
 
