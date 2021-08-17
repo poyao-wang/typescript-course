@@ -1,9 +1,13 @@
 "use strict";
-function merge(objA, objB) {
-    return Object.assign(objA, objB);
+function countAndDescribe(element) {
+    let descriptionText = 'Got no value.';
+    if (element.length === 1) {
+        descriptionText = 'Got 1 element.';
+    }
+    else if (element.length > 1) {
+        descriptionText = 'Got ' + element.length + ' elements.';
+    }
+    return [element, descriptionText];
 }
-const objA = { name: 'Max', hobbies: ['Sports'] };
-const objB = { age: 30 };
-const mergedObj = merge(objA, objB);
-console.log(mergedObj);
+console.log(countAndDescribe(['Sports', 'Cooking']));
 //# sourceMappingURL=app.js.map
