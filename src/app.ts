@@ -42,32 +42,32 @@
 
 // extractAndConvert({ name: 'Max' }, 'name');
 
-class DataStorage<T extends string | number | boolean> {
-  private data: T[] = [];
+// class DataStorage<T extends string | number | boolean> {
+//   private data: T[] = [];
 
-  addItem(item: T) {
-    this.data.push(item);
-  }
+//   addItem(item: T) {
+//     this.data.push(item);
+//   }
 
-  removeItem(item: T) {
-    if (this.data.indexOf(item) === -1) {
-      return;
-    }
-    this.data.splice(this.data.indexOf(item), 1); // -1
-  }
+//   removeItem(item: T) {
+//     if (this.data.indexOf(item) === -1) {
+//       return;
+//     }
+//     this.data.splice(this.data.indexOf(item), 1); // -1
+//   }
 
-  getItems() {
-    return [...this.data];
-  }
-}
+//   getItems() {
+//     return [...this.data];
+//   }
+// }
 
-const textStorage = new DataStorage<string>();
-textStorage.addItem('Max');
-textStorage.addItem('Manu');
-textStorage.removeItem('Max');
-console.log(textStorage.getItems());
+// const textStorage = new DataStorage<string>();
+// textStorage.addItem('Max');
+// textStorage.addItem('Manu');
+// textStorage.removeItem('Max');
+// console.log(textStorage.getItems());
 
-const numberStorage = new DataStorage<number>();
+// const numberStorage = new DataStorage<number>();
 
 // const objStorage = new DataStorage<object>();
 // const maxObj = {name: 'Max'};
@@ -76,3 +76,25 @@ const numberStorage = new DataStorage<number>();
 // // ...
 // objStorage.removeItem(maxObj);
 // console.log(objStorage.getItems());
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+
+const names: Readonly<string[]> = ['Max', 'Anna'];
+// names.push('Manu');
+// names.pop();
