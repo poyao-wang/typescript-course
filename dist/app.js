@@ -1,6 +1,25 @@
 "use strict";
-function extractAndConvert(obj, key) {
-    return 'Value: ' + obj[key];
+class DataStorage {
+    constructor() {
+        this.data = [];
+    }
+    addItem(item) {
+        this.data.push(item);
+    }
+    removeItem(item) {
+        if (this.data.indexOf(item) === -1) {
+            return;
+        }
+        this.data.splice(this.data.indexOf(item), 1);
+    }
+    getItems() {
+        return [...this.data];
+    }
 }
-extractAndConvert({ name: 'Max' }, 'name');
+const textStorage = new DataStorage();
+textStorage.addItem('Max');
+textStorage.addItem('Manu');
+textStorage.removeItem('Max');
+console.log(textStorage.getItems());
+const numberStorage = new DataStorage();
 //# sourceMappingURL=app.js.map
