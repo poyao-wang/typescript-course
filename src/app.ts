@@ -8,7 +8,7 @@ function Logger(logString: string) {
 
 function WithTemplate(template: string, hookId: string) {
   console.log('TEMPLATE FACTORY');
-  return function <T extends { new(...args: any[]): { name: string } }>(
+  return function <T extends { new (...args: any[]): { name: string } }>(
     originalConstructor: T
   ) {
     return class extends originalConstructor {
@@ -100,7 +100,11 @@ class Product {
 const p1 = new Product('Book', 19);
 const p2 = new Product('Book 2', 29);
 
-function Autobind(_target: any, _propertyName: string, descriptor: PropertyDescriptor) {
+function Autobind(
+  _target: any,
+  _propertyName: string,
+  descriptor: PropertyDescriptor
+) {
   const originalMethod = descriptor.value;
   const adjDescriptor: PropertyDescriptor = {
     configurable: true,
@@ -127,3 +131,48 @@ p.showMessage();
 
 const button = document.querySelector('button')!;
 button.addEventListener('click', p.showMessage);
+
+// ---
+
+interface ValidatorConfig {}
+
+const registeredValidators: ValidatorConfig = {};
+
+function IsRequired(_target: any, _propName: string) {}
+
+function IsPositiveNumber(_target: any, _propName: string) {}
+
+function validate(_obj: any): boolean {
+  let isValid = true;
+  return isValid;
+}
+
+class Course {
+  @IsRequired
+  title: string;
+  @IsPositiveNumber
+  price: number;
+
+  constructor(t: string, p: number) {
+    this.title = t;
+    this.price = p;
+  }
+}
+
+const courseForm = document.querySelector('form')!;
+courseForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const titleEl = document.getElementById('title') as HTMLInputElement;
+  const priceEl = document.getElementById('price') as HTMLInputElement;
+
+  const title = titleEl.value;
+  const price = +priceEl.value;
+
+  const createdCourse = new Course(title, price);
+
+  if (!validate(createdCourse)) {
+    alert('Invalid input, please try again!');
+    return;
+  }
+  console.log(createdCourse);
+});

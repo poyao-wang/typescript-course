@@ -121,4 +121,37 @@ const p = new Printer();
 p.showMessage();
 const button = document.querySelector('button');
 button.addEventListener('click', p.showMessage);
+const registeredValidators = {};
+function IsRequired(_target, _propName) { }
+function IsPositiveNumber(_target, _propName) { }
+function validate(_obj) {
+    let isValid = true;
+    return isValid;
+}
+class Course {
+    constructor(t, p) {
+        this.title = t;
+        this.price = p;
+    }
+}
+__decorate([
+    IsRequired
+], Course.prototype, "title", void 0);
+__decorate([
+    IsPositiveNumber
+], Course.prototype, "price", void 0);
+const courseForm = document.querySelector('form');
+courseForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const titleEl = document.getElementById('title');
+    const priceEl = document.getElementById('price');
+    const title = titleEl.value;
+    const price = +priceEl.value;
+    const createdCourse = new Course(title, price);
+    if (!validate(createdCourse)) {
+        alert('Invalid input, please try again!');
+        return;
+    }
+    console.log(createdCourse);
+});
 //# sourceMappingURL=app.js.map
