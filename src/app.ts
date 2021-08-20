@@ -134,16 +134,46 @@ button.addEventListener('click', p.showMessage);
 
 // ---
 
-interface ValidatorConfig {}
+interface ValidatorConfig {
+  [property: string]: {
+    [validatableProp: string]: string[]; // ['required', 'positive']
+  };
+}
 
 const registeredValidators: ValidatorConfig = {};
 
-function IsRequired(_target: any, _propName: string) {}
+function IsRequired(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: ['required'],
+  };
+}
 
-function IsPositiveNumber(_target: any, _propName: string) {}
+function IsPositiveNumber(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: ['positive'],
+  };
+}
 
-function validate(_obj: any): boolean {
+function validate(obj: any) {
+  const objValidatorConfig = registeredValidators[obj.constructor.name];
+  if (!objValidatorConfig) {
+    return true;
+  }
   let isValid = true;
+  for (const prop in objValidatorConfig) {
+    for (const validator of objValidatorConfig[prop]) {
+      switch (validator) {
+        case 'required':
+          isValid = isValid && !!obj[prop];
+          break;
+        case 'positive':
+          isValid = isValid && obj[prop] > 0;
+          break;
+      }
+    }
+  }
   return isValid;
 }
 
