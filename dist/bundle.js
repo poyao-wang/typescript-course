@@ -127,7 +127,7 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst lodash_1 = __importDefault(__webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\"));\nconsole.log(lodash_1.default.shuffle([1, 2, 3]));\nconsole.log(GLOBAL);\n\n\n//# sourceURL=webpack:///./src/app.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst lodash_1 = __importDefault(__webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\"));\nconsole.log(lodash_1.default.shuffle([1, 2, 3]));\n\n\n//# sourceURL=webpack:///./src/app.ts?");
 
 /***/ })
 
